@@ -1,6 +1,6 @@
 # Torso
 
-**Torso** is an open source, self-hosted infrastructure orchestration engine written in Go. Define your infrastructure, databases, applications, DNS, load balancers, and more in a declarative `.Torso` file, and let Torso handle the rest.
+**Torso** is an open source, self-hosted infrastructure orchestration engine written in Rust. Define your infrastructure, databases, applications, DNS, load balancers, and more in a declarative `.Torso` file, and let Torso handle the rest.
 
 Think of it as CloudFormation, but one you own, run yourself, and extend however you want.
 
@@ -19,7 +19,7 @@ curl -X POST http://localhost:7070/apply \
   --data-binary @my-service.Torso    # Deploy a new service
 ```
 
-No proprietary dashboards. No cloud lock in. Just Go, HTTP, and a file.
+No proprietary dashboards. No cloud lock in. Just Rust, HTTP, and a file.
 
 ---
 
@@ -61,7 +61,7 @@ Torso reads the `kind` field and routes it to the correct provisioner under the 
 - **File driven** — everything is defined in an `.Torso` file. No hidden state in a UI.
 - **HTTP native** — the engine is an API. Automate it, wrap it, integrate it.
 - **Pluggable** — providers are first-class. Torso doesn't dictate where you run.
-- **Go all the way** — single binary, fast startup, easy to deploy Torso itself.
+- **Rust all the way** — single binary, fast startup, easy to deploy Torso itself.
 
 ---
 
@@ -149,7 +149,7 @@ Torso reads the `kind` field and routes it to the correct provisioner under the 
 ---
 
 ### Phase 10 — Provider System
-- [ ] Pluggable provider architecture, write your own provisioner in Go
+- [ ] Pluggable provider architecture, write your own provisioner in Rust
 - [ ] Official providers: Docker, Kubernetes, DigitalOcean, Hetzner, AWS
 - [ ] Provider registry, install providers via `Torso provider add <name>`
 - [ ] Provider versioning and pinning inside `.Torso` files
