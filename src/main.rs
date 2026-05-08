@@ -1,5 +1,6 @@
 mod flag;
 mod tui;
+mod scaffold;
 
 use std::env;
 
@@ -8,6 +9,7 @@ fn main() {
 
     match arguments.get(1).map(String::as_str) {
         None => tui::show_menu(),
+        Some("--init") => scaffold::loader::load_scaffold(),
         Some(unknown) => tui::handle_unknown(unknown),
     }
 }
