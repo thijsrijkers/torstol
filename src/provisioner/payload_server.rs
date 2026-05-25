@@ -2,18 +2,21 @@ use std::{
     io::{prelude::*, BufReader},
     net::{TcpListener, TcpStream},
 };
+use yaml_rust::Yaml;
 
-pub fn setup_server() {
+use crate::provisioner::payload_transport::deploy_payload;
+
+pub fn setup_server(config: &Yaml) {
     let listener = TcpListener::bind("127.0.0.1:4978").unwrap();
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
 
-        handle_connection(stream);
+        handle_connection(stream, config);
     }
 }
 
-fn handle_connection(mut stream: TcpStream) {
+fn handle_connection(mut stream: TcpStream, config: &Yaml) {
     let mut buf_reader = BufReader::new(&stream);
 
     let mut request_line = String::new();
@@ -49,7 +52,7 @@ fn handle_connection(mut stream: TcpStream) {
 
         let body_text = String::from_utf8_lossy(&body);
 
-        println!("POST body: {}", body_text);
+        deploy_payload(&body_text, config);
 
         let status_line = "HTTP/1.1 200 OK";
 

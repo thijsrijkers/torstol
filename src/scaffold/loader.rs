@@ -9,7 +9,7 @@ pub fn load_scaffold() {
     check_required_values(&torso_file);
 
     if torso_file["kind"].as_str().unwrap_or("") == "provisioner" {
-        setup_server(); 
+        setup_server(&torso_file); 
     }
 }
 

@@ -17,6 +17,7 @@ pub fn ssh_run(ssh_user: &str, remote_host: &str, command: &str) -> io::Result<(
             format!("ssh command failed: {command}"),
         ));
     }
+
     Ok(())
 }
 
