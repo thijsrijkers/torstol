@@ -15,3 +15,6 @@ Cargo.lock   # remove this line if building a binary (keep lock for binaries)
 # OS
 .DS_Store
 Thumbs.db
+
+# Torso
+torso.yaml

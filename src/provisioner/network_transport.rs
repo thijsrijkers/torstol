@@ -1,23 +1,22 @@
 use std::process::Command;
 use std::io;
 
-pub fn ssh_run(ssh_user: &str, remote_host: &str, command: &str) -> io::Result<()> {
+pub fn ssh_run(ssh_user: &str, remote_host: &str, command: &str, identity_file: &str) -> io::Result<()> {
     let status = Command::new("ssh")
         .args([
             "-o", "BatchMode=yes",
             "-o", "ConnectTimeout=10",
+            "-i", identity_file,
             &format!("{ssh_user}@{remote_host}"),
             command,
         ])
         .status()?;
-
     if !status.success() {
         return Err(io::Error::new(
             io::ErrorKind::Other,
             format!("ssh command failed: {command}"),
         ));
     }
-
     Ok(())
 }
 
